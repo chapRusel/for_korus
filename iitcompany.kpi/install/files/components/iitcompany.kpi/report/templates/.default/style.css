@@ -1,0 +1,9 @@
+div.main-buttons {
+    height: auto;
+    padding-bottom: 25px;
+}
+
+.template-bitrix24 div.main-buttons-inner-container,
+div.main-buttons {
+    background: #edf2f4;
+}

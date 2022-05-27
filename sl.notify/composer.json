@@ -1,0 +1,8 @@
+{
+  "autoload": {
+    "psr-4": {
+      "IIT\\Notify\\App\\": "app",
+      "IIT\\Notify\\Src\\": "src"
+    }
+  }
+}

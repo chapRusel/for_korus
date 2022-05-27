@@ -1,0 +1,7 @@
+{
+  "autoload": {
+    "psr-4": {
+      "IIT\\Content\\App\\": "app"
+    }
+  }
+}

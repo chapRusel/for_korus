@@ -1,0 +1,42 @@
+<?php
+
+const STOP_STATISTICS = true;
+const NOT_CHECK_PERMISSIONS = true;
+const NO_KEEP_STATISTIC = 'Y';
+const NO_AGENT_STATISTIC = 'Y';
+const DisableEventsCheck = true;
+const BX_SECURITY_SHOW_MESSAGE = true;
+const XHR_REQUEST = true;
+
+require_once($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include/prolog_before.php");
+
+/**
+ * Подключается модуль
+ */
+use Bitrix\Main\Loader;
+Loader::includeModule('iit.illuminate.component');
+
+/**
+ * @var $routePath
+ *      Переменная для файла маршрутов
+ *
+ * @var $middleware
+ *      Переменная для задания алиасов middleware
+ */
+$routePath = #CURRENT_DIR#;
+$middleware = [
+    'auth' => \App\Middleware\Authenticate::class
+];
+
+/**
+ * Вызов класса инициализации роутера
+ * @method setRoutePath()
+ *      Задаёт ссылку на файл с маршрутом
+ *
+ * @method setMiddleware()
+ *      Задаёт Middleware
+ */
+\IIT\Illuminate\Facades\Routing::getInstance()
+    ->setRoutePath($routePath)
+    ->setMiddleware($middleware)
+    ->init();

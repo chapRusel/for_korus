@@ -1,0 +1,42 @@
+<?php
+
+use Bitrix\Main\Loader;
+
+/**
+ * Подключаете модуль со своим функционалом
+ */
+Loader::includeModule('iit.test.router');
+
+
+/** @var $router Router */
+
+
+/**
+ * Вариация рессурсного контроллера.
+ *  - Первый вариант просто котроллер
+ *  - Второй вариант с наличием middleware
+ */
+$router->resource('user', \IIT\Router\UserController::class);
+$router->resource('user', \IIT\Router\UserController::class)->middleware('auth');
+
+
+/**
+ * Просто GET маршрут
+ */
+$router->get('/test', function () {
+    return 'hello world!';
+});
+
+
+/**
+ * Маршрут для обработки отсутствующих маршрутов
+ */
+$router->any('{any}', function () {
+    http_response_code(404);
+    return json_encode(
+        [
+            'status' => 'Not Found'
+        ],
+        JSON_THROW_ON_ERROR
+    );
+})->where('any', '(.*)');
